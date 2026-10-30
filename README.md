@@ -56,3 +56,10 @@ Methods:
 The sort guarantee is lexicographic over the Crockford alphabet
 (`0..9A..Z` minus `I L O U`), not ASCII. To sort raw ID strings
 chronologically, use `SYMBOLS.index` as the sort key.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
